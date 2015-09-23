@@ -30,6 +30,13 @@ On the system running the tests, modify your composer.json as follows:
                 },
                 "replace": {
                     "drupal/drupal-driver": "self.version"
+                },
+                "autoload": {
+                    "psr-0": {
+                        "Drupal\\Component": "src/",
+                        "Drupal\\Driver": "src/",
+                        "Drupal\\Tests\\Driver" : "tests/"
+                    }
                 }
             }
         }
