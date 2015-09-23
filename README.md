@@ -11,27 +11,32 @@ See the PR on GitHub: [Enhance the Drush driver to allow creation of nodes and t
 On the system running the tests, modify your composer.json as follows:
 ``` json
 {
-  "repositories": [
-    {
-      "type": "package",
-      "package": {
-        "name": "greg-1-anderson/drupal-driver",
-        "type": "library",
-        "version": "1.0",
-        "source": {
-            "url": "https://github.com/greg-1-anderson/drupal-driver.git",
-            "type": "git",
-            "reference": "drush-create-node"
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.drupal-composer.org"
         },
-        "replace": {
-          "drupal/drupal-driver"
+
+        {
+            "type": "package",
+            "package": {
+                "name": "greg-1-anderson/drupal-driver",
+                "type": "library",
+                "version": "1.1.2",
+                "source": {
+                    "url": "https://github.com/greg-1-anderson/DrupalDriver.git",
+                    "type": "git",
+                    "reference": "drush-create-node"
+                },
+                "replace": {
+                    "drupal/drupal-driver": "self.version"
+                }
+            }
         }
-      }
+    ],
+    "require": {
+        "greg-1-anderson/drupal-driver": "1.1.2",
     }
-  ],
-  "require": {
-    "greg-1-anderson/drupal-driver": "~1.0"
-  }
 }
 ```
 On the system running the Drupal site being tested, add the following to your composer.json file's `require` section:
@@ -39,7 +44,7 @@ On the system running the Drupal site being tested, add the following to your co
 ``` json
 {
   "require": {
-    "pantheon-systems/behat-drush-endpoint": "~1.0"
+    "pantheon-systems/behat-drush-endpoint": "*"
   }
 }
 ```
