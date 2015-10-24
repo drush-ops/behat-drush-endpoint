@@ -43,22 +43,6 @@ function _drush_behat_get_field_handler($entity, $entity_type, $field_name) {
 }
 
 /**
- * Get all of the field attached to the specified entity type.
- *
- * @see Drupal\Driver\Cores\Drupal7\getEntityFieldTypes in Behat
- */
-function _drush_behat_get_entity_field_types($entity_type) {
-  $return = array();
-  $fields = field_info_field_map();
-  foreach ($fields as $field_name => $field) {
-    if (array_key_exists($entity_type, $field['bundles'])) {
-      $return[$field_name] = $field['type'];
-    }
-  }
-  return $return;
-}
-
-/**
  * Converts a seried of words into camel case.
  *
  * @see Symfony\Component\DependencyInjection\Container\camelize
