@@ -1,5 +1,5 @@
 {
-  "name": "pantheon-systems/behat-drush-endpoint",
+  "name": "drush-ops/behat-drush-endpoint",
   "description": "Drush commandfile for use with drupal/drupal-driver.",
   "type": "drupal-drush",
   "keywords": ["drush","behat","testing"],
