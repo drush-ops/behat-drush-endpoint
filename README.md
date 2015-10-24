@@ -51,8 +51,8 @@ On the system running the Drupal site being tested, add the following to your co
 ``` json
 {
   "require": {
-    "pantheon-systems/behat-drush-endpoint": "*"
+    "drush-ops/behat-drush-endpoint": "*"
   }
 }
 ```
-If you are not using composer.json on the remote Drupal site, then copy either `behat.d8.drush.inc` or `behat.d7.drush.inc`, as applicable, to either **__ROOT__**/drush or **__ROOT__**/sites/all/drush.
+If you are not using composer.json on the remote Drupal site, then copy the entire contents of this project to either **__ROOT__**/drush or **__ROOT__**/sites/all/drush.
