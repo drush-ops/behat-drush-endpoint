@@ -4,55 +4,17 @@ The Behat Drupal Driver contains three drivers:  *Blackbox*, *Direct Drupal API*
 
 **THIS PROJECT IS STILL UNDER DEVELOPMENT.**
 
-See the PR on GitHub: [Enhance the Drush driver to allow creation of nodes and taxonomy terms](https://github.com/jhedstrom/DrupalDriver/pull/56).
+At this point in time, the PR needed to enable this project, [Enhance the Drush driver to allow creation of nodes and taxonomy terms](https://github.com/jhedstrom/DrupalDriver/pull/56), has been committed to the drupal/drupal-driver project; however, it is not yet part of a stable release.
 
 ## Installation Instructions
 
-On the system running the tests, modify your composer.json as follows:
+If you are managing your Drupal site with Composer, ensure that your composer.json contains the following entries:
 ``` json
 {
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packagist.drupal-composer.org"
-        },
-
-        {
-            "type": "package",
-            "package": {
-                "name": "greg-1-anderson/drupal-driver",
-                "type": "library",
-                "version": "1.1.2",
-                "source": {
-                    "url": "https://github.com/greg-1-anderson/DrupalDriver.git",
-                    "type": "git",
-                    "reference": "drush-create-node"
-                },
-                "replace": {
-                    "drupal/drupal-driver": "self.version"
-                },
-                "autoload": {
-                    "psr-0": {
-                        "Drupal\\Component": "src/",
-                        "Drupal\\Driver": "src/",
-                        "Drupal\\Tests\\Driver" : "tests/"
-                    }
-                }
-            }
-        }
-    ],
-    "require": {
-        "greg-1-anderson/drupal-driver": "1.1.2",
-    }
+    "require-dev": {
+        "drush-ops/behat-drush-endpoint": "*",
+        "drupal/drupal-driver": "dev-master"
+    },
 }
 ```
-On the system running the Drupal site being tested, add the following to your composer.json file's `require` section:
-
-``` json
-{
-  "require": {
-    "drush-ops/behat-drush-endpoint": "*"
-  }
-}
-```
-If you are not using composer.json on the remote Drupal site, then copy the entire contents of this project to either **__ROOT__**/drush or **__ROOT__**/sites/all/drush.
+If you are not using composer.json on the remote Drupal site, then copy the entire contents of this project to either **__ROOT__**/drush or **__ROOT__**/sites/all/drush.  You must still ensure that the system running Behat is using the dev-master release of the drupal/drupal-driver project.
