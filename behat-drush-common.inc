@@ -30,8 +30,7 @@ function _drush_behat_expand_entity_fields($entity_type, \stdClass $entity) {
  *
  * @see Drupal\Driver\Cores\AbstractCore\getFieldHandler
  */
-function _drush_behat_get_field_handler($entity, $entity_type, $field_name) {
-  $core_namespace = "Drupal7";
+function _drush_behat_get_field_handler_common($entity, $entity_type, $field_name, $core_namespace) {
   $field_types = _drush_behat_get_entity_field_types($entity_type);
   $camelized_type = _drush_behat_camelize($field_types[$field_name]);
   $default_class = sprintf('\Drupal\Driver\Fields\%s\DefaultHandler', $core_namespace);

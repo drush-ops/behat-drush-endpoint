@@ -158,6 +158,15 @@ function drush_behat_op_delete_term(\stdClass $term) {
 }
 
 /**
+ * Check if this is a field.
+ */
+function drush_behat_op_is_field($is_field_info) {
+  list($entity_type, $field_name) = $is_field_info;
+  $map = field_info_field_map();
+  return !empty($map[$field_name]) && array_key_exists($entity_type, $map[$field_name]['bundles']);
+}
+
+/**
  * Expands properties on the given entity object to the expected structure.
  *
  * @param \stdClass $entity
@@ -196,4 +205,9 @@ function _drush_behat_get_entity_field_types($entity_type) {
     }
   }
   return $return;
+}
+
+function _drush_behat_get_field_handler($entity, $entity_type, $field_name) {
+  $core_namespace = "Drupal7";
+  return _drush_behat_get_field_handler_common($entity, $entity_type, $field_name, $core_namespace);
 }

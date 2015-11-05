@@ -127,6 +127,14 @@ function drush_behat_op_delete_term(\stdClass $term) {
 }
 
 /**
+ * Check if this is a field.
+ */
+function drush_behat_op_is_field($is_field_info) {
+  list($entity_type, $field_name) = $is_field_info;
+  return _drush_behat_is_field($entity_type, $field_name);
+}
+
+/**
  * Get all of the field attached to the specified entity type.
  *
  * @see Drupal\Driver\Cores\Drupal8\getEntityFieldTypes in Behat
@@ -145,4 +153,9 @@ function _drush_behat_get_entity_field_types($entity_type) {
 function _drush_behat_is_field($entity_type, $field_name) {
   $fields = \Drupal::entityManager()->getFieldStorageDefinitions($entity_type);
   return (isset($fields[$field_name]) && $fields[$field_name] instanceof FieldStorageConfig);
+}
+
+function _drush_behat_get_field_handler($entity, $entity_type, $field_name) {
+  $core_namespace = "Drupal8";
+  return _drush_behat_get_field_handler_common($entity, $entity_type, $field_name, $core_namespace);
 }
