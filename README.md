@@ -17,4 +17,4 @@ If you are managing your Drupal site with Composer, ensure that your composer.js
     },
 }
 ```
-If you are not using composer.json on the remote Drupal site, then copy the entire contents of this project to either **__ROOT__**/drush or **__ROOT__**/sites/all/drush.  You must still ensure that the system running Behat is using the dev-master release of the drupal/drupal-driver project.
+If you are not using composer.json on the remote Drupal site, then copy the entire contents of this project to either **__ROOT__**/drush or **__ROOT__**/sites/all/drush, then `cd behat-drush-endpoint` and run `composer install`.  You must still ensure that the system running Behat is using the dev-master release of the drupal/drupal-driver project.

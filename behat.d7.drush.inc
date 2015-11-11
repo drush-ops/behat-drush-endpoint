@@ -8,6 +8,13 @@
 include __DIR__ . '/behat-drush-common.inc';
 
 /**
+ * Implements hook_drush_init
+ */
+function behat_drush_init() {
+  drush_autoload(__FILE__);
+}
+
+/**
  * Implements hook_drush_command().
  */
 function behat_drush_command() {
