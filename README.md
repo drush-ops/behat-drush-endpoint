@@ -1,4 +1,4 @@
-The Behat Drush Endpoint is the remote component neede to work with the [Behat Drupal Driver](https://github.com/jhedstrom/DrupalDriver).
+The Behat Drush Endpoint is the remote component needed to work with the [Behat Drupal Driver](https://github.com/jhedstrom/DrupalDriver).
 
 The Behat Drupal Driver contains three drivers:  *Blackbox*, *Direct Drupal API*, and *Drush*.  The Behat Drush Endpoint is only necessary when using the *Drush* driver.
 
