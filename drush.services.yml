@@ -1,5 +1,5 @@
 services:
-  behat_drush_endpoint_9.commands:
-    class: \Drupal\behat_drush_endpoint_9\Commands\BehatDrushEndpoint9Commands
+  behat_drush_endpoint.commands:
+    class: \Drupal\behat_drush_endpoint\Commands\BehatDrushEndpointCommands
     tags:
       - { name: drush.command }
