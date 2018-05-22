@@ -1,5 +1,0 @@
-services:
-  _global.commands:
-    class: \Drush\Commands\BehatDrushEndpointCommands
-    tags:
-      - { name: drush.command }

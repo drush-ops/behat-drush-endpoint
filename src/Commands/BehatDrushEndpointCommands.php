@@ -1,6 +1,6 @@
 <?php
 
-namespace \Drush\Commands;
+namespace Drush\Commands;
 
 use Drush\Commands\DrushCommands;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -8,8 +8,6 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
-
-include __DIR__ . '/../../behat-drush-common.inc';
 
 /**
  * A Drush commandfile.
@@ -37,15 +35,15 @@ class BehatDrushEndpointCommands extends DrushCommands {
    * @aliases behat
    */
   public function behat($operation, $data) {
-    $data = json_decode($json_data);
+    $obj = json_decode($data);
 
     // Dispatch if the operation exists.
     $fn = 'drush_behat_op_' . strtr($operation, '-', '_');
-    if (method_exits($this, $fn)) {
-      return $this->{$fn}($data);
+    if (method_exists($this, $fn)) {
+      return $this->{$fn}($obj);
     }
     else {
-      throw new \Exception('DRUSH_BEHAT_NO_OPERATION', dt("Operation '!op' unknown", array('!op' => $operation)));
+      throw new \Exception(dt("Operation '!op' unknown", array('!op' => $operation)));
     }
   }
 
@@ -66,7 +64,7 @@ class BehatDrushEndpointCommands extends DrushCommands {
     }
 
     // Attempt to decipher any fields that may be specified.
-    _drush_behat_expand_entity_fields('node', $node);
+    $this->drush_behat_expand_entity_fields('node', $node);
 
     $entity = entity_create('node', (array) $node);
     $entity->save();
@@ -115,9 +113,9 @@ class BehatDrushEndpointCommands extends DrushCommands {
   /**
    * Check if this is a field.
    */
-  function drush_behat_op_is_field($is_field_info) {
+  public function drush_behat_op_is_field($is_field_info) {
     list($entity_type, $field_name) = $is_field_info;
-    return _drush_behat_is_field($entity_type, $field_name);
+    return $this->drush_behat_is_field($entity_type, $field_name);
   }
 
   /**
@@ -125,25 +123,65 @@ class BehatDrushEndpointCommands extends DrushCommands {
    *
    * @see Drupal\Driver\Cores\Drupal8\getEntityFieldTypes in Behat
    */
-  function _drush_behat_get_entity_field_types($entity_type) {
+  protected function drush_behat_get_entity_field_types($entity_type) {
     $return = array();
     $fields = \Drupal::entityManager()->getFieldStorageDefinitions($entity_type);
     foreach ($fields as $field_name => $field) {
-      if (_drush_behat_is_field($entity_type, $field_name)) {
+      if ($this->drush_behat_is_field($entity_type, $field_name)) {
         $return[$field_name] = $field->getType();
       }
     }
     return $return;
   }
 
-  function _drush_behat_is_field($entity_type, $field_name) {
+  protected function drush_behat_is_field($entity_type, $field_name) {
     $fields = \Drupal::entityManager()->getFieldStorageDefinitions($entity_type);
     return (isset($fields[$field_name]) && $fields[$field_name] instanceof FieldStorageConfig);
   }
 
-  function _drush_behat_get_field_handler($entity, $entity_type, $field_name) {
+  protected function drush_behat_get_field_handler($entity, $entity_type, $field_name) {
     $core_namespace = "Drupal8";
-    return _drush_behat_get_field_handler_common($entity, $entity_type, $field_name, $core_namespace);
+    return $this->drush_behat_get_field_handler_common($entity, $entity_type, $field_name, $core_namespace);
+  }
+
+  /**
+   * Expands properties on the given entity object to the expected structure.
+   *
+   * @param \stdClass $entity
+   *   Entity object.
+   *
+   * @see Drupal\Driver\Cores\AbstractCore\expandEntityFields
+   */
+  protected function drush_behat_expand_entity_fields($entity_type, \stdClass $entity) {
+    $field_types = $this->drush_behat_get_entity_field_types($entity_type);
+    foreach ($field_types as $field_name => $type) {
+      if (isset($entity->$field_name)) {
+        $entity->$field_name = $this->drush_behat_get_field_handler($entity, $entity_type, $field_name)
+          ->expand($entity->$field_name);
+      }
+    }
+  }
+
+  /**
+   * Get the field handler for the specified field of the specified entity.
+   *
+   * Note that this function instantiates a field handler class that is
+   * provided by the Behat Drush Driver.  In order for this to work, an
+   * appropriate autoload.inc file must be included.  This will be done
+   * automatically if the Drupal site is managed by Composer, and requires
+   * the Behat Drush Driver in its composer.json file.
+   *
+   * @see Drupal\Driver\Cores\AbstractCore\getFieldHandler
+   */
+  protected function drush_behat_get_field_handler_common($entity, $entity_type, $field_name, $core_namespace) {
+    $field_types = $this->drush_behat_get_entity_field_types($entity_type);
+    $camelized_type = $this->drush_behat_camelize($field_types[$field_name]);
+    $default_class = sprintf('\Drupal\Driver\Fields\%s\DefaultHandler', $core_namespace);
+    $class_name = sprintf('\Drupal\Driver\Fields\%s\%sHandler', $core_namespace, $camelized_type);
+    if (class_exists($class_name)) {
+      return new $class_name($entity, $entity_type, $field_name);
+    }
+    return new $default_class($entity, $entity_type, $field_name);
   }
 
 }
