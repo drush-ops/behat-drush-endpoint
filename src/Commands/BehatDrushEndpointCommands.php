@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\behat_drush_endpoint\Commands;
+namespace \Drush\Commands;
 
 use Drush\Commands\DrushCommands;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -26,17 +26,17 @@ class BehatDrushEndpointCommands extends DrushCommands {
   /**
    * Behat Drush endpoint. Serves as an entrypoint for Behat to make remote calls into the Drupal site being tested.
    *
-   * @command behat:create
-   * @aliases behat
-   *
    * @param $operation
    *   Behat operation, e.g. create-node.
    * @param $data
    *   Operation data in json format.
    * @usage drush behat create-node '{"title":"Example page","type":"page"}'
    *   Create a page with the title "Example page".
+   *
+   * @command behat:create
+   * @aliases behat
    */
-  public function create($operation, $data) {
+  public function behat($operation, $data) {
     $data = json_decode($json_data);
 
     // Dispatch if the operation exists.
