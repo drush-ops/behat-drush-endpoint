@@ -10,6 +10,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 
 include __DIR__ . '/behat-drush-common.inc';
 
@@ -67,6 +68,52 @@ function drush_behat($operation, $json_data) {
   }
   else {
     return drush_set_error('DRUSH_BEHAT_NO_OPERATION', dt("Operation '!op' unknown", array('!op' => $operation)));
+  }
+}
+
+/**
+ * Create an entity.
+ */
+function drush_behat_op_create_entity($settings) {
+  $entity_type = $settings['entity_type'];
+  $entity = $settings['entity'];
+
+  // If the bundle field is empty, put the inferred bundle value in it
+  $bundle_key = \Drupal::entityManager()->getDefinition($entity_type)->getKey('bundle');
+  if (!isset($entity->$bundle_key) && isset($entity->step_bundle)) $entity->$bundle_key = $entity->step_bundle;
+
+  // Throw an exception if a bundle is specified but does not exist.
+  if (isset($entity->$bundle_key) && ($entity->$bundle_key !== NULL)) {
+    $bundles = \Drupal::entityManager()->getBundleInfo($entity_type);
+
+    if (!in_array($entity->$bundle_key, array_keys($bundles))) {
+      throw new \Exception("Cannot create entity because provided bundle '$entity->$bundle_key' does not exist.");
+    }
+  }
+  if (empty($entity_type)) {
+    throw new \Exception("You must specify an entity type to create an entity.");
+  }
+
+  // Attempt to decipher any fields that may be specified.
+  _drush_behat_expand_entity_fields('node', $node);
+  $createdEntity = entity_create($entity_type, (array) $entity);
+  $createdEntity->save();
+
+  $entity->id = $createdEntity->id();
+
+  return (array) $entity;
+}
+
+/**
+ * Delete an entity.
+ */
+public function drush_behat_op_delete_entity($settings) {
+  $entity_type = $settings['entity_type'];
+  $entity = $settings['entity'];
+
+  $entity = $entity instanceof ContentEntityInterface ? $entity : entity_load($entity_type, $entity->id);
+  if ($entity instanceof ContentEntityInterface) {
+    $entity->delete();
   }
 }
 
