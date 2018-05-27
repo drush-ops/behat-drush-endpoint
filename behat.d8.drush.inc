@@ -95,7 +95,7 @@ function drush_behat_op_create_entity($settings) {
   }
 
   // Attempt to decipher any fields that may be specified.
-  _drush_behat_expand_entity_fields('node', $node);
+  _drush_behat_expand_entity_fields($entity_type, $entity);
   $createdEntity = entity_create($entity_type, (array) $entity);
   $createdEntity->save();
 
@@ -107,7 +107,7 @@ function drush_behat_op_create_entity($settings) {
 /**
  * Delete an entity.
  */
-public function drush_behat_op_delete_entity($settings) {
+function drush_behat_op_delete_entity($settings) {
   $entity_type = $settings['entity_type'];
   $entity = $settings['entity'];
 

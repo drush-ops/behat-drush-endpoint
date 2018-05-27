@@ -82,7 +82,7 @@ function drush_behat_op_create_entity($settings) {
 /**
  * Delete an entity.
  */
-public function drush_behat_op_delete_entity($settings) {
+function drush_behat_op_delete_entity($settings) {
   // @todo: create a D7 version of this function
   throw new \Exception('Deletion of entities via the generic Entity API is not yet implemented for Drupal 7.');
 }
