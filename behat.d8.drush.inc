@@ -75,8 +75,8 @@ function drush_behat($operation, $json_data) {
  * Create an entity.
  */
 function drush_behat_op_create_entity($settings) {
-  $entity_type = $settings['entity_type'];
-  $entity = $settings['entity'];
+  $entity_type = $settings->entity_type;
+  $entity = $settings->entity;
 
   // If the bundle field is empty, put the inferred bundle value in it
   $bundle_key = \Drupal::entityManager()->getDefinition($entity_type)->getKey('bundle');
@@ -108,8 +108,8 @@ function drush_behat_op_create_entity($settings) {
  * Delete an entity.
  */
 function drush_behat_op_delete_entity($settings) {
-  $entity_type = $settings['entity_type'];
-  $entity = $settings['entity'];
+  $entity_type = $settings->entity_type;
+  $entity = $settings->entity;
 
   $entity = $entity instanceof ContentEntityInterface ? $entity : entity_load($entity_type, $entity->id);
   if ($entity instanceof ContentEntityInterface) {
