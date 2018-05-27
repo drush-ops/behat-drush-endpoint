@@ -72,6 +72,22 @@ function drush_behat($operation, $json_data) {
 }
 
 /**
+ * Create an entity.
+ */
+function drush_behat_op_create_entity($settings) {
+  // @todo: create a D7 version of this function
+  throw new \Exception('Creation of entities via the generic Entity API is not yet implemented for Drupal 7.');
+}
+
+/**
+ * Delete an entity.
+ */
+public function drush_behat_op_delete_entity($settings) {
+  // @todo: create a D7 version of this function
+  throw new \Exception('Deletion of entities via the generic Entity API is not yet implemented for Drupal 7.');
+}
+
+/**
  * Create a node.
  */
 function drush_behat_op_create_node($node) {
