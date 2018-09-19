@@ -1,6 +1,6 @@
 <?php
 
-namespace Drush\Commands;
+namespace Drush\Commands\behat_drush_endpoint;
 
 use Drush\Commands\DrushCommands;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -14,12 +14,9 @@ use Drupal\taxonomy\TermInterface;
  *
  * Contains Behat Drush commands, for use by the Behat Drush Extension.
  * These commands are specifically for Drush 9
- *
- * See these files for an example of injecting Drupal services:
- *   - http://cgit.drupalcode.org/devel/tree/src/Commands/DevelCommands.php
- *   - http://cgit.drupalcode.org/devel/tree/drush.services.yml
  */
-class BehatDrushEndpointCommands extends DrushCommands {
+class BehatDrushEndpointCommands extends DrushCommands
+{
 
   public function __construct() {
     include __DIR__ . '/../../behat.d8.drush.inc';
@@ -36,8 +33,7 @@ class BehatDrushEndpointCommands extends DrushCommands {
    *   Create a page with the title "Example page".
    *
    * @bootstrap full
-   * @command behat:create
-   * @aliases behat
+   * @command behat
    */
   public function behat($operation, $data) {
     $obj = json_decode($data);
@@ -51,5 +47,4 @@ class BehatDrushEndpointCommands extends DrushCommands {
       throw new \Exception(dt("Operation '!op' unknown", array('!op' => $operation)));
     }
   }
-
 }
