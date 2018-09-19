@@ -35,7 +35,7 @@ class BehatDrushEndpointCommands extends DrushCommands
    * @bootstrap full
    * @command behat
    */
-  public function behat($operation, $data) {
+  public function behat($operation, $data, $options = ['format' => 'json']) {
     $obj = json_decode($data);
 
     // Dispatch if the operation exists.
