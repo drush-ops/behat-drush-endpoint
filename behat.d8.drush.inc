@@ -120,7 +120,7 @@ function drush_behat_op_create_term($term) {
   $entity->save();
 
   $term->tid = $entity->id();
-  return $term;
+  return (array) $term;
 }
 
 /**
