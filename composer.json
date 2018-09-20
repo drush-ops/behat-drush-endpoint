@@ -7,6 +7,6 @@
   "license": "GPL-2.0-or-later",
   "require": {
     "php": ">=5.3.0",
-    "drupal/drupal-driver": "^1"
+    "drupal/drupal-driver": "^3"
   }
 }
