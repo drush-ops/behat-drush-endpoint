@@ -1,6 +1,9 @@
 <?php
 
-namespace Drush\Commands\behat_drush_endpoint;
+// In Drush 9.5.0, this may be behat_drush_endpoint instead. Prior to Drush
+// 9.5.0, it is necessary to re-map the namespace in composer.json if the
+// Composer project name contains `-`s.
+namespace Drush\Commands\BehatDrushEndpoint;
 
 use Drush\Commands\DrushCommands;
 use Drupal\field\Entity\FieldStorageConfig;

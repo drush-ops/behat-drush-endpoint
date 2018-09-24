@@ -11,5 +11,8 @@
   },
   "conflict": {
     "drush/drush": "<9.5.0 || >=10.0"
+  },
+  "extra": {
+    "installer-name": "BehatDrushEndpoint"
   }
 }
