@@ -8,6 +8,8 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
 /**
  * A Drush commandfile.
@@ -15,8 +17,9 @@ use Drupal\taxonomy\TermInterface;
  * Contains Behat Drush commands, for use by the Behat Drush Extension.
  * These commands are specifically for Drush 9
  */
-class BehatDrushEndpointCommands extends DrushCommands
+class BehatDrushEndpointCommands implements LoggerAwareInterface
 {
+  use LoggerAwareTrait;
 
   public function __construct() {
     include __DIR__ . '/behat.d8.drush.inc';
