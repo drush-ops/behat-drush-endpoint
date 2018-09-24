@@ -38,7 +38,7 @@ class BehatDrushEndpointCommands implements LoggerAwareInterface
    * @usage drush behat create-node '{"title":"Example page","type":"page"}'
    *   Create a page with the title "Example page".
    *
-   * @bootstrap full
+   * @bootstrap DRUSH_BOOTSTRAP_DRUPAL_FULL
    * @command behat
    */
   public function behat($operation, $data, $options = ['format' => 'json']) {
