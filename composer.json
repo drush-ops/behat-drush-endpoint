@@ -10,6 +10,6 @@
     "drupal/drupal-driver": "*"
   },
   "conflict": {
-    "drush/drush": "<9.5.0 || >=10.0"
+    "drush/drush": "<8.1.17 || >=10.0"
   }
 }
