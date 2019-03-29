@@ -19,7 +19,7 @@ class BehatDrushEndpointCommands extends DrushCommands
 {
 
   public function __construct() {
-    include __DIR__ . '/behat.d8.drush.inc';
+    include __DIR__ . '/behat.inc';
   }
 
   /**
