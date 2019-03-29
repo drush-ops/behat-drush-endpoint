@@ -10,7 +10,7 @@
     "drupal/drupal-driver": "*"
   },
   "conflict": {
-    "drush/drush": "<8.0 || >=10.0"
+    "drush/drush": "<8.0 || >=9.0"
   },
   "extra": {
     "installer-name": "BehatDrushEndpoint"
