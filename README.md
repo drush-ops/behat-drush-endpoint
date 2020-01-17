@@ -4,7 +4,13 @@ The Behat Drupal Driver contains three drivers:  *Blackbox*, *Direct Drupal API*
 
 ## Installation Instructions
 
-THESE INSTRUCTIONS ARE FOR DRUSH 9 of DRUSH 8.2+. If you are using an earlier version of Drush 8, please switch to the 8.x branch.
+THESE INSTRUCTIONS ARE FOR:
+
+- DRUSH 10
+- DRUSH 9
+- DRUSH 8.2.0+
+
+If you are using an earlier version of Drush 8, please switch to the 8.x branch.
 
 If you are managing your Drupal site with Composer, then add the Behat Drush Endpoint to your project as follows:
 ```bash
