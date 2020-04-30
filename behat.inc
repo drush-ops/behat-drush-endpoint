@@ -99,7 +99,7 @@ function _drush_behat_get_entity_field_types($entity_type) {
 }
 
 function _drush_behat_is_field($entity_type, $field_name) {
-  $fields = $this->entityFieldmanager->getFieldStorageDefinitions($entity_type);
+  $fields = $this->entityFieldManager->getFieldStorageDefinitions($entity_type);
   return (isset($fields[$field_name]) && $fields[$field_name] instanceof FieldStorageConfig);
 }
 
