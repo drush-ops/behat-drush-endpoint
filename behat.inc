@@ -10,6 +10,9 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\views\EntityViewsData;
+use Drupal\Core\Entity\FieldableEntityInterface;
 
 /**
  * Create a node.
