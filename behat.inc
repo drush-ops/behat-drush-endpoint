@@ -89,7 +89,7 @@ function drush_behat_op_is_field($is_field_info) {
  */
 function _drush_behat_get_entity_field_types($entity_type) {
   $return = array();
-  $fields = \Drupal::entityFieldManagerInterface()->getFieldStorageDefinitions($entity_type);
+  $fields = \Drupal::EntityFieldManagerInterface()->getFieldStorageDefinitions($entity_type);
   foreach ($fields as $field_name => $field) {
     if (_drush_behat_is_field($entity_type, $field_name)) {
       $return[$field_name] = $field->getType();
@@ -99,7 +99,7 @@ function _drush_behat_get_entity_field_types($entity_type) {
 }
 
 function _drush_behat_is_field($entity_type, $field_name) {
-  $fields = \Drupal::entityFieldManagerInterface()->getFieldStorageDefinitions($entity_type);
+  $fields = \Drupal::EntityFieldManagerInterface()->getFieldStorageDefinitions($entity_type);
   return (isset($fields[$field_name]) && $fields[$field_name] instanceof FieldStorageConfig);
 }
 
