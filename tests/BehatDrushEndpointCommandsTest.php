@@ -10,7 +10,6 @@ use TestUtils\FixturesTrait;
  */
 class BehatDrushEndpointCommandsTest extends TestCase
 {
-    use DrushTestTrait;
     use FixturesTrait;
 
     public function setUp()
