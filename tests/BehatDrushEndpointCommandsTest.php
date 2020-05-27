@@ -29,7 +29,7 @@ class BehatDrushEndpointCommandsTest extends TestCase
     {
         $this->drush('behat', [], ['help' => true]);
         $output = $this->getOutput();
-        $this->assertContains('Behat Drush endpoint. Serves as an entrypoint for Behat to make remote calls into the Drupal site being tested.', $output);
+        $this->assertContains('Behat Drush endpoint. Serves as an entrypoint for Behat', $output);
     }
 
     /**
