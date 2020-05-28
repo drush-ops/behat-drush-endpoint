@@ -21,6 +21,7 @@
         "drupal/core": "^8.8",
         "pantheon-systems/drupal-integrations": "^8",
         "drush/drush": "^8.3.3 || ^10.2.2",
+        "g1a/composer-test-scenarios": "^3.0.2",
         "phpunit/phpunit": "^6.5",
         "symfony/filesystem": "^3.4.28",
         "webflo/drupal-finder": "^1.1.0",
@@ -75,6 +76,19 @@
                 "config": {
                     "platform": {
                         "php": "7.0.8"
+                    }
+                }
+            },
+            "drupal9": {
+                "require-dev": {
+                    "drupal/core-recommended": "^9@rc",
+                    "drupal/core": "^9@rc",
+                    "drupal/core-composer-scaffold": "^9@rc",
+                    "pantheon-systems/drupal-integrations": "^9"
+                },
+                "config": {
+                    "platform": {
+                        "php": "7.3"
                     }
                 }
             }
