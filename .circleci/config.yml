@@ -6,6 +6,8 @@ defaults: &defaults
     PHPUNIT_ARGS: ""
     PHP_SENDMAIL_PATH: /dev/null
 
+version: 2.1
+jobs:
   test_72_drupal8:
     <<: *defaults
     docker:
