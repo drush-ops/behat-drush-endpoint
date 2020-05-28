@@ -1,5 +1,4 @@
 language: php
-dist: trusty
 
 branches:
   only:
@@ -8,13 +7,6 @@ branches:
 matrix:
   include:
     - php: 7.3
-    - php: 7.2
-    - php: 7.2
-      env: 'SCENARIO=drush8'
-    - php: 7.1
-      env: 'SCENARIO=drush8'
-    - php: 7.0
-      env: 'SCENARIO=drush8'
 
 env:
   global:
