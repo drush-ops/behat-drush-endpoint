@@ -80,7 +80,7 @@
                 "pantheon-systems/drupal-integrations"
             ],
             "locations": {
-                "web-root": "./sut/web"
+                "web-root": "../../sut/web"
             },
             "file-mapping": {
                 "[project-root]/.editorconfig": false
