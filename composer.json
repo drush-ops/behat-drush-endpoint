@@ -65,7 +65,19 @@
             },
             "file-mapping": {
                 "[project-root]/.editorconfig": false
-            }            
+            }
+        },
+        "scenarios": {
+            "drush8": {
+                "require-dev": {
+                    "drush/drush": "^8.3.3"
+                },
+                "config": {
+                    "platform": {
+                        "php": "7.0.8"
+                    }
+                }
+            }
         }
     }
 }
