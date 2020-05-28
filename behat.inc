@@ -30,7 +30,10 @@ function drush_behat_op_create_node($node) {
   // Attempt to decipher any fields that may be specified.
   _drush_behat_expand_entity_fields('node', $node);
 
-  $entity = entity_create('node', (array) $node);
+  $entity = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->create((array) $node);
+
   $entity->save();
 
   $node->nid = $entity->id();
@@ -57,7 +60,10 @@ function drush_behat_op_create_term($term) {
   // Attempt to decipher any fields that may be specified.
   _drush_behat_expand_entity_fields('taxonomy_term', $term);
 
-  $entity = entity_create('taxonomy_term', (array)$term);
+  $entity = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->create((array)$term);
+
   $entity->save();
 
   $term->tid = $entity->id();
