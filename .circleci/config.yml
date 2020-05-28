@@ -49,7 +49,7 @@ jobs:
     steps:
       - checkout
       - run: cp .circleci/zz-php.ini /usr/local/etc/php/conf.d/
-      - run: composer require --dev drupal/core-recommended:^9@rc pantheon-systems/drupal-integrations:^9 --no-update
+      - run: composer require --dev drupal/core-recommended:^9@rc drupal/core:^9@rc drupal/core-composer-scaffold:^9@rc pantheon-systems/drupal-integrations:^9 --no-update
       - run: composer config platform.php 7.3.0
       - run: composer update --no-scripts
       - run: composer install -n
