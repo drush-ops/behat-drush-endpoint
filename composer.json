@@ -77,6 +77,19 @@
                         "php": "7.0.8"
                     }
                 }
+            },
+            "drupal9": {
+                "require-dev": {
+                    "drupal/core-recommended": "^9@rc",
+                    "drupal/core": "^9@rc",
+                    "drupal/core-composer-scaffold": "^9@rc",
+                    "drupal/pantheon-systems/drupal-integrations": "^9"
+                },
+                "config": {
+                    "platform": {
+                        "php": "7.3"
+                    }
+                }
             }
         }
     }
