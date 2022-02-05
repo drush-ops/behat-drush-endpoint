@@ -29,7 +29,7 @@
         "zaporylie/composer-drupal-optimizations": "^1.0.2"
     },
     "conflict": {
-        "drush/drush": "<8.2 || >=9.0 <9.6.0 || >=11.0"
+        "drush/drush": "<8.2 || >=9.0 <9.6.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
